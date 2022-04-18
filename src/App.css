@@ -1,0 +1,118 @@
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+a {
+  text-decoration: none;
+  color: white
+}
+
+img.scalable-image {
+  cursor: pointer;
+  transition: transform 1s;
+}
+
+img.scalable-image:hover {
+  transform: scale(1.2);
+}
+
+.hand-cursor {
+  cursor: pointer;
+}
+
+.card-desc {
+  opacity: 0.5;
+  transform: translate(0, 80%);
+  transition: all 1s;
+  color: white;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    to bottom,
+    #813434ef 0%,
+    #6c1e1eda 50%,
+    #0b6759a7 100%
+  );
+}
+
+.card-desc:hover {
+  opacity: 1;
+  transform: translate(0, 15%);
+}
+
+.card-desc > * {
+  padding: 0.6rem;
+}
+
+/* ----- * ----- * ----- * ----- */
+/* Rating cirlce style */
+/* ----- * ----- * ----- * ----- */
+
+/* Variables */
+:root {
+  --rating-size: 4rem;
+  --bar-size: 0.4rem;
+  --background-color: rgb(66, 55, 55);
+  --rating-color-default: #2980b9;
+  --rating-color-background: #9eafbb;
+}
+
+/* Rating item */
+.rating {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+
+  background: var(--rating-color-default);
+  color: var(--rating-color-default);
+  width: var(--rating-size);
+  height: var(--rating-size);
+
+  /* Basic style for the text */
+  font-size: calc(var(--rating-size) / 3);
+  line-height: 1;
+}
+
+/* Rating circle content */
+.rating span {
+  position: relative;
+  display: flex;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.rating span small {
+  font-size: 0.5em;
+  font-weight: 900;
+  align-self: center;
+}
+
+/* Bar mask, creates an inner circle with the same color as thee background */
+.rating::after {
+  content: "";
+  position: absolute;
+  top: var(--bar-size);
+  right: var(--bar-size);
+  bottom: var(--bar-size);
+  left: var(--bar-size);
+  background: var(--background-color);
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Bar background */
+.rating::before {
+  content: "";
+  position: absolute;
+  top: var(--bar-size);
+  right: var(--bar-size);
+  bottom: var(--bar-size);
+  left: var(--bar-size);
+  border-radius: inherit;
+  box-shadow: 0 0 0 1rem var(--rating-color-background);
+  z-index: -1;
+}
