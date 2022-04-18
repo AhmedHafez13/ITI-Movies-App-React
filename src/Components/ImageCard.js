@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function ImageCard({ imgHeight, cardData }) {
   const { title, subtitle, image, link } = cardData;
   return (
-    <Card sx={{ maxWidth: 345, borderRadius: 3, marginRight: 1 }}>
+    <Card sx={{ maxWidth: 240, borderRadius: 3, marginRight: 1 }}>
       <Link to={link || '#'} >
         <CardMedia
           component="img"

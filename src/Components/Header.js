@@ -15,6 +15,7 @@ function Header() {
           </Typography>
         </Link>
         <Link to='/favourites' style={{marginLeft: '1rem'}}>Favourites</Link>
+        <Link to='/search' style={{marginLeft: '1rem'}}>Search</Link>
       </Toolbar>
     </AppBar>
   );

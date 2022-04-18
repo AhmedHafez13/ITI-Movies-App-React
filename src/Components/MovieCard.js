@@ -11,7 +11,7 @@ function MovieCard(props) {
 
   return (
     <Card sx={{ borderRadius: 3 }} elevation={0} className="hand-cursor">
-      <Link to={"movie/" + id}>
+      <Link to={"/movie/" + id}>
         <ImageListItem>
           <img className="scalable-image"
             height='100%'

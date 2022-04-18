@@ -9,6 +9,7 @@ import Footer from './Components/Footer/Footer';
 
 import Home from './Pages/Home';
 import Favourites from './Pages/Favourites';
+import Search from './Pages/Search';
 import MovieDetails from './Pages/MovieDetails';
 
 const theme = createTheme({
@@ -29,6 +30,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/movie/:id' element={<MovieDetails />} />
           <Route path='/favourites' element={<Favourites />} />
+          <Route path='/search' element={<Search />} />
         </Routes>
         <Footer />
       </ThemeProvider>
