@@ -1,21 +1,19 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box, Container, FormControl, OutlinedInput, Typography
 } from '@mui/material';
 
 import LoadingIndicator from '../Components/LoadingIndicator';
 import MoviesGrid from '../Components/MoviesGrid';
+import PageHero from '../Components/PageHero';
 import MovieApi from '../Api/MovieApi';
 
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import useQuery from '../CustomHooks/UseQuery'
 
 // Used to delay for some time before making request
 let searchDelayInterval = null;
-
-function useQuery() {
-  const { search } = useLocation();
-  return useMemo(() => new URLSearchParams(search), [search]);
-}
 
 export default function Search(props, ss) {
   const [isLoading, setisLoading] = useState(false);
@@ -90,7 +88,13 @@ export default function Search(props, ss) {
 
       {isLoading
         ? <LoadingIndicator />
-        : <MoviesGrid movies={movies} />
+        :
+        <>
+          {searchQuery.length > 0 && movies.length === 0
+            ? <PageHero title="Can't find anything 😢" />
+            : <MoviesGrid movies={movies} />
+          }
+        </>
       }
     </>
   );

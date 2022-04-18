@@ -1,8 +1,8 @@
 import { Box, Typography, Container } from '@mui/material';
 
 function PageHero(props) {
-  const title = props.title || "Animation Movies";
-  const desc = props.desc || "Makes it easy to find and enjoy the entertainment you love in one place...";
+  const title = props.title|| '';
+  const desc = props.desc || '';
   return (
     <Box sx={{ bgcolor: 'background.paper', pt: 4, pb: 3 }}>
       <Container maxWidth="sm">
