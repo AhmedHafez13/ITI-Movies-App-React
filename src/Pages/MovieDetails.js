@@ -85,7 +85,9 @@ function MovieDetails() {
             <Grid item xs={12} sm={5} md={4}>
               {/* <Card sx={{ borderRadius: 4, margin: 3, height: 'auto' }}> */}
               <div className="app-card" style={{ margin: 24 }}>
-                <img src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
+                <img src={details.poster_path
+                  ? "https://image.tmdb.org/t/p/w500/" + details.poster_path
+                  : "/images/movie-placeholder.png"}
                   height='100%' width='100%' alt="Movie Poster" />
               </div>
               {/* </Card> */}

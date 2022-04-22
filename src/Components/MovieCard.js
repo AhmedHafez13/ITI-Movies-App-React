@@ -6,8 +6,14 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import RatingCirle from './RatingCircle';
 import { Link } from 'react-router-dom';
 
+// import moviePlaceholder from './images/moviePlaceholder.png'
+
 function MovieCard(props) {
   const { id, title, overview, poster_path, vote_average } = props.movieData;
+
+  let posterSrc = poster_path
+    ? "https://image.tmdb.org/t/p/w500/" + poster_path
+    : "/images/movie-placeholder.png";
 
   return (
     <div className="app-card">
@@ -16,8 +22,8 @@ function MovieCard(props) {
           <ImageListItem>
             <img className="scalable-image"
               height='100%'
-              src={"https://image.tmdb.org/t/p/w500/" + poster_path}
-              srcSet={"https://image.tmdb.org/t/p/w500/" + poster_path}
+              src={posterSrc}
+              srcSet={posterSrc}
               alt={title}
               loading="lazy"
             />
