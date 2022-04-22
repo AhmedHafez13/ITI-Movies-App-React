@@ -13,7 +13,7 @@ function MovieDetails() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isRecomLoading, setRecomIsLoading] = useState(true);
-  
+
   const [details, setDetails] = useState({});
   const [credits, setCredits] = useState({});
   const [recommendations, setRecommendations] = useState({});
@@ -83,10 +83,12 @@ function MovieDetails() {
 
           <Grid container spacing={4}>
             <Grid item xs={12} sm={5} md={4}>
-              <Card sx={{ borderRadius: 4, margin: 3, height: 'auto' }}>
+              {/* <Card sx={{ borderRadius: 4, margin: 3, height: 'auto' }}> */}
+              <div className="app-card" style={{ margin: 24 }}>
                 <img src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
                   height='100%' width='100%' alt="Movie Poster" />
-              </Card>
+              </div>
+              {/* </Card> */}
             </Grid>
 
             <Grid item xs={12} sm={7} md={8}>

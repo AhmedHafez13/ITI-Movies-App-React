@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from "react-router-dom";
+
 import {
   Box, Container, FormControl, OutlinedInput, Typography
 } from '@mui/material';
+
+import useQuery from '../CustomHooks/UseQuery'
 
 import LoadingIndicator from '../Components/LoadingIndicator';
 import MoviesGrid from '../Components/MoviesGrid';
 import PageHero from '../Components/PageHero';
 import MovieApi from '../Api/MovieApi';
 
-import { useNavigate } from 'react-router-dom';
-
-import useQuery from '../CustomHooks/UseQuery'
-
 // Used to delay for some time before making request
 let searchDelayInterval = null;
 
-export default function Search(props, ss) {
-  const [isLoading, setisLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [movies, setMovies] = useState([]);
+export default function Search() {
+  let [isLoading, setisLoading] = useState(false);
+  let [searchQuery, setSearchQuery] = useState("");
+  let [movies, setMovies] = useState([]);
 
-  const navigate = useNavigate();
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const query = useQuery();
   const initialQuery = query.get("query");
@@ -30,7 +30,10 @@ export default function Search(props, ss) {
   }, []);
 
   useEffect(() => {
-    if (searchQuery) setisLoading(true);
+    searchParams.set('query', searchQuery);
+    setSearchParams(searchParams)
+
+    setisLoading(searchQuery ? true : false);
     clearInterval(searchDelayInterval);
     if (searchQuery) {
       searchDelayInterval = setTimeout(() => {
@@ -76,10 +79,7 @@ export default function Search(props, ss) {
                 placeholder="Enter a movie title"
                 className="text-center"
                 value={initialQuery}
-                onChange={(event) => {
-                  setSearchQuery(event.target.value);
-                  navigate("/search?query=" + event.target.value);
-                }}
+                onChange={(event) => { setSearchQuery(searchQuery) }}
               />
             </FormControl>
           </Box>
