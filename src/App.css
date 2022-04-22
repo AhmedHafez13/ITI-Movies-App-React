@@ -27,6 +27,7 @@ a {
   background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
   box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
 }
+
 /* [End] ----- * ----- Scrollbar Style ----- * ----- */
 
 img.scalable-image {
@@ -48,12 +49,10 @@ img.scalable-image:hover {
   transition: all 1s;
   color: white;
   border-radius: 0.5rem;
-  background: linear-gradient(
-    to bottom,
-    #813434ef 0%,
-    #6c1e1eda 50%,
-    #0b6759a7 100%
-  );
+  background: linear-gradient(to bottom,
+      #813434ef 0%,
+      #6c1e1eda 50%,
+      #0b6759a7 100%);
 }
 
 .card-desc:hover {
@@ -61,18 +60,95 @@ img.scalable-image:hover {
   transform: translate(0, 15%);
 }
 
-.card-desc > * {
+.card-desc>* {
   padding: 0.6rem;
 }
 
-/* ----- * ----- * ----- * ----- */
-/* Rating cirlce style */
-/* ----- * ----- * ----- * ----- */
+/* [START] ----- * ----- Magic Card ----- * ----- */
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+.app-card {
+  /* background: #191c29; */
+  /* width: var(--card-width); */
+  /* height: var(--card-height); */
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  /* color: rgb(88 199 250 / 0%); */
+  cursor: pointer;
+  font-family: cursive;
+}
+
+.app-card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+
+/* .app-card:hover:before, .app-card:hover:after {
+  animation: none;
+  opacity: 0;
+} */
+
+.app-card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+.app-card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+/* [End] ----- * ----- Magic Card ----- * ----- */
+
+/* [Start] ----- * ----- Rating cirlce style ----- * ----- */
 
 /* Variables */
 :root {
-  --rating-size: 4rem;
-  --bar-size: 0.4rem;
+  /* --rating-size: 4rem; */
+  /* --bar-size: 0.4rem; */
+  --rating-size: 3.6rem;
+  --bar-size: 0.25rem;
   --background-color: rgb(66, 55, 55);
   --rating-color-default: #2980b9;
   --rating-color-background: #9eafbb;
@@ -136,3 +212,5 @@ img.scalable-image:hover {
   box-shadow: 0 0 0 1rem var(--rating-color-background);
   z-index: -1;
 }
+
+/* [End] ----- * ----- Rating cirlce style ----- * ----- */
