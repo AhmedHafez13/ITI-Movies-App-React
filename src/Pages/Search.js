@@ -15,25 +15,22 @@ import MovieApi from '../Api/MovieApi';
 // Used to delay for some time before making request
 let searchDelayInterval = null;
 
-export default function Search() {
-  let [isLoading, setisLoading] = useState(false);
-  let [searchQuery, setSearchQuery] = useState("");
-  let [movies, setMovies] = useState([]);
+export default function Search(props, ss) {
+  const [isLoading, setisLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [movies, setMovies] = useState([]);
 
   let [searchParams, setSearchParams] = useSearchParams();
 
   const query = useQuery();
-  const initialQuery = query.get("query");
 
   useEffect(() => {
-    if (initialQuery) setSearchQuery(initialQuery)
-  }, []);
+    setSearchQuery(query.get("query") || "")
+  }, [searchParams]);
 
   useEffect(() => {
-    searchParams.set('query', searchQuery);
-    setSearchParams(searchParams)
-
     setisLoading(searchQuery ? true : false);
+
     clearInterval(searchDelayInterval);
     if (searchQuery) {
       searchDelayInterval = setTimeout(() => {
@@ -61,6 +58,11 @@ export default function Search() {
     }
   }
 
+  const updateUrlQuery = (newQuery) => {
+    searchParams.set('query', newQuery);
+    setSearchParams(searchParams)
+  }
+
   return (
     <>
       <Box sx={{
@@ -78,8 +80,8 @@ export default function Search() {
               <OutlinedInput
                 placeholder="Enter a movie title"
                 className="text-center"
-                value={initialQuery}
-                onChange={(event) => { setSearchQuery(searchQuery) }}
+                value={searchQuery}
+                onChange={(event) => { updateUrlQuery(event.target.value) }}
               />
             </FormControl>
           </Box>
@@ -90,7 +92,7 @@ export default function Search() {
         ? <LoadingIndicator />
         :
         <>
-          {searchQuery.length > 0 && movies.length === 0
+          {searchQuery && searchQuery.length > 0 && movies.length === 0
             ? <PageHero title="Can't find anything 😢" />
             : <MoviesGrid movies={movies} />
           }

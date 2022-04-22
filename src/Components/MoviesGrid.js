@@ -1,12 +1,12 @@
 import { Container, Grid } from '@mui/material';
 
-import Page from 'react-page-loading'
+// import Page from 'react-page-loading'
 
 import MovieCard from './MovieCard';
 
 export default function MoviesGrid({ movies }) {
   return (
-    <Page loader={"bar"} color={"#A9A9A9"} size={4}>
+    // <Page loader={"bar"} color={"#A9A9A9"} size={4}>
       <Container sx={{ py: 2 }} >
         <Grid container spacing={4}>
           {movies.map((movie) => (
@@ -16,7 +16,7 @@ export default function MoviesGrid({ movies }) {
           ))}
         </Grid>
       </Container>
-    </Page>
+    // </Page>
   );
 }
 
